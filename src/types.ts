@@ -1,6 +1,7 @@
 export type RootStackParamList = {
   Home: undefined;
   Details: { vehicle: Vehicle };
+  Settings: undefined;
 };
 
 export interface Vehicle {
@@ -10,3 +11,18 @@ export interface Vehicle {
   category: string;
   phone: string;
 }
+
+enum ELanguageId {
+  en = "en",
+  ru = "ru"
+}
+
+interface ILanguage {
+  id: ELanguageId,
+  title: string,
+}
+
+export const languages: ILanguage[] = [
+  { id: ELanguageId.en, title: "English" },
+  { id: ELanguageId.ru, title: "Русский" }
+]

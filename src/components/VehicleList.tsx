@@ -28,7 +28,6 @@ const vehiclesData: Vehicle[] = [
     category: 'Спецтранспорт',
     phone: '+789',
   },
-  // Добавьте другие элементы данных
 ];
 
 const VehicleList: React.FC = () => {

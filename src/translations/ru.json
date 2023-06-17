@@ -1,0 +1,16 @@
+{
+  "greetings": "Привет",
+  "title": "Заголовок приложения",
+  "homeScreen": {
+    "welcomeMessage": "Добро пожаловать на главный экран"
+  },
+  "settingsScreen": {
+    "languageLabel": "Язык"
+  },
+  "vehicleDetailsScreen": {
+    "category": "Категория",
+    "driver": "Водитель",
+    "callButton": "Позвонить",
+    "messageButton": "Написать"
+  }
+}

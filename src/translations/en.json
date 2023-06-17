@@ -1,0 +1,16 @@
+{
+  "greetings": "Hello",
+  "title": "App Title",
+  "homeScreen": {
+    "welcomeMessage": "Welcome to the Home Screen"
+  },
+  "settingsScreen": {
+    "languageLabel": "Language"
+  },
+  "detailsScreen": {
+    "category": "Category",
+    "driver": "Driver",
+    "callButton": "Call",
+    "messageButton": "Send Message"
+  }
+}
