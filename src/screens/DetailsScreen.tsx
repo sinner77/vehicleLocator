@@ -13,8 +13,7 @@ const DetailsScreen: React.FC<DetailsScreenProps> = ({route, navigation}) => {
   const {vehicle} = route.params;
   return (
     <View>
-      <Text>Details Screen</Text>
-      <Button title="Go back" onPress={() => navigation.goBack()} />
+      <Text>{t('detailsScreen.detailsScreen')}</Text>
       <VehicleDetails vehicle={vehicle}/>
     </View>
   );

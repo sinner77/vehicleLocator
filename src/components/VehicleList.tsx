@@ -1,50 +1,57 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
-import {View, Text, FlatList, Switch, TouchableOpacity} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  Switch,
+  TouchableOpacity,
+} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList, Vehicle} from '../types';
+import importedVehiclesData from './Vehicles.json';
+import MapView, {Marker} from 'react-native-maps';
 
-type DetailsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Details'>;
+type DetailsScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'Details'
+>;
 
-const vehiclesData: Vehicle[] = [
-  {
-    id: 1,
-    name: 'ТС #1',
-    driver: 'Водитель 1',
-    category: 'Грузовой',
-    phone: '+123',
-  },
-  {
-    id: 2,
-    name: 'ТС #2',
-    driver: 'Водитель 2',
-    category: 'Пассажирский',
-    phone: '+456',
-  },
-  {
-    id: 3,
-    name: 'ТС #3',
-    driver: 'Водитель 3',
-    category: 'Спецтранспорт',
-    phone: '+789',
-  },
-];
+const driverLocation = {
+  latitude: 37.78825,
+  longitude: -122.4324,
+};
+
+const startingPosition = {
+  latitude: 37.78825,
+  longitude: -122.4324,
+  latitudeDelta: 5.0922,
+  longitudeDelta: 5.0421,
+};
+
+const vehiclesData: Vehicle[] = importedVehiclesData;
 
 const VehicleList: React.FC = () => {
   const navigation = useNavigation<DetailsScreenNavigationProp>();
   const [vehicles, setVehicles] = useState<Vehicle[]>(vehiclesData);
   const [showMap, setShowMap] = useState(false);
+  const [filter, setFilter] = useState('');
 
   const toggleMap = () => {
     setShowMap(!showMap);
   };
 
   const filterVehicles = (category: string) => {
-    const filteredVehicles = vehiclesData.filter(
-      vehicle => vehicle.category === category,
-    );
-    setVehicles(filteredVehicles);
+    setFilter(filter => (filter === category ? '' : category));
   };
+
+  useEffect(() => {
+    const filteredVehicles = !!filter? vehiclesData.filter(
+      vehicle => vehicle.category === filter,
+    ): vehiclesData;
+    setVehicles(filteredVehicles);
+  }, [filter]);
 
   const renderItem = ({item}: {item: Vehicle}) => (
     <TouchableOpacity onPress={() => handleVehiclePress(item)}>
@@ -57,34 +64,34 @@ const VehicleList: React.FC = () => {
   );
 
   const handleVehiclePress = (vehicle: Vehicle) => {
-    // Обработка нажатия на элемент списка ТС
-    // Навигация на экран ТС или выполнение других действий
     navigation.navigate('Details', {vehicle});
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <View>
-        <Text>Фильтр по категории:</Text>
+        <Text style={styles.filter}>Фильтр по категории:</Text>
         <TouchableOpacity onPress={() => filterVehicles('Грузовой')}>
-          <Text>Грузовой</Text>
+          <Text style={styles.filter1}>Грузовой</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => filterVehicles('Пассажирский')}>
-          <Text>Пассажирский</Text>
+          <Text style={styles.filter1}>Пассажирский</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => filterVehicles('Спецтранспорт')}>
-          <Text>Спецтранспорт</Text>
+          <Text style={styles.filter1}>Спецтранспорт</Text>
         </TouchableOpacity>
       </View>
 
       <View>
-        <Text>Показать на карте:</Text>
+        <Text style={styles.filter}>Показать на карте:</Text>
         <Switch value={showMap} onValueChange={toggleMap} />
       </View>
 
       {showMap ? (
-        // Вставьте код для отображения карты
-        <Text>Карта</Text>
+        <>
+          <Text style={styles.filter}>Карта</Text>
+          <MapView style={styles.map}></MapView>
+        </>
       ) : (
         <FlatList
           data={vehicles}
@@ -95,5 +102,32 @@ const VehicleList: React.FC = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    fontSize: 100,
+    fontWeight: 'bold',
+  },
+  filter: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 8,
+    alignItems: 'center',
+  },
+  filter1: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 8,
+    alignItems: 'center',
+  },
+  map: {
+    width: '100%',
+    height: 300,
+    marginBottom: 16,
+  },
+});
 
 export default VehicleList;

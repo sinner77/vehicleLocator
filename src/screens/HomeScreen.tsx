@@ -20,7 +20,7 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
   }
   return (
     <View style={styles.container}>
-      <Text>Список автомобилей</Text>
+      <Text>{t('homeScreen.carList')}</Text>
       <VehicleList />
       <Button title='Settings' onPress={handleVehiclePress} />
     </View>
@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
   
   container: {
     flex: 1,
-    backgroundColor: 'pink',
+    backgroundColor: 'white',
+    alignItems: 'center',
     fontSize: 40,
     fontWeight: 'bold',
   },

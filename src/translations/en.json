@@ -2,12 +2,14 @@
   "greetings": "Hello",
   "title": "App Title",
   "homeScreen": {
-    "welcomeMessage": "Welcome to the Home Screen"
+    "carList": "Car List"
   },
   "settingsScreen": {
+    "settings": "Settings",
     "languageLabel": "Language"
   },
   "detailsScreen": {
+    "detailsScreen": "Details Screen",
     "category": "Category",
     "driver": "Driver",
     "callButton": "Call",

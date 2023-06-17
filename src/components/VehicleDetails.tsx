@@ -4,15 +4,15 @@ import {Vehicle} from '../types';
 import MapView, {Marker} from 'react-native-maps';
 
 const driverLocation = {
-  latitude: 37.78825, // Широта
-  longitude: -122.4324, // Долгота
+  latitude: 37.78825,
+  longitude: -122.4324,
 };
 
 const startingPosition = {
   latitude: 37.78825,
   longitude: -122.4324,
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421,
+  latitudeDelta: 5.0922,
+  longitudeDelta: 5.0421,
 };
 
 const VehicleDetails: React.FC<{vehicle: Vehicle}> = ({vehicle}) => {
@@ -40,12 +40,12 @@ const VehicleDetails: React.FC<{vehicle: Vehicle}> = ({vehicle}) => {
         <Text style={styles.driverName}>{vehicle.driver}</Text>
         <Text style={styles.phone}>{vehicle.phone}</Text>
         <TouchableOpacity style={styles.button} onPress={handleCallDriver}>
-          <Text style={styles.buttonText}>Call</Text>
+          <Text style={styles.buttonText}>Позвонить</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={handleSendMessage}>
-          <Text style={styles.buttonText}>Send Message</Text>
+          <Text style={styles.buttonText}>Написать</Text>
         </TouchableOpacity>
-        <MapView style={styles.map} initialRegion={startingPosition}></MapView>
+        <MapView style={styles.map}></MapView>
       </View>
     </>
   );
@@ -62,11 +62,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 8,
+    alignItems: 'center',
   },
   name: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 8,
+    alignItems: 'center',
   },
   category: {
     fontSize: 16,
@@ -78,14 +80,15 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   button: {
-    backgroundColor: 'blue',
+    backgroundColor: 'green',
     paddingVertical: 8,
     paddingHorizontal: 16,
+    alignItems: 'center',
     borderRadius: 4,
     marginBottom: 8,
   },
   buttonText: {
-    color: 'red',
+    color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
   },

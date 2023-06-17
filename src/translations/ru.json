@@ -2,12 +2,14 @@
   "greetings": "Привет",
   "title": "Заголовок приложения",
   "homeScreen": {
-    "welcomeMessage": "Добро пожаловать на главный экран"
+    "carList": "Список автомобилей"
   },
   "settingsScreen": {
+    "settings": "Настройки",
     "languageLabel": "Язык"
   },
-  "vehicleDetailsScreen": {
+  "detailsScreen": {
+    "detailsScreen": "Экран сведений",
     "category": "Категория",
     "driver": "Водитель",
     "callButton": "Позвонить",

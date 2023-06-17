@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
-import {languages} from '../types.ts';
+import {languages} from '../types.tsx';
 import {Picker} from '@react-native-picker/picker';
 import {useTranslation} from 'react-i18next';
 
@@ -22,7 +22,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Settings</Text>
+      <Text style={styles.title}>{t('settingsScreen.settings')}</Text>
       <View style={styles.option}>
         <Text>{t('settingsScreen.languageLabel')}</Text>
         <Picker
