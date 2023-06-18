@@ -23,7 +23,7 @@
     "messageButton": "Написать"
   },
   "vehicleDetails": {
-    "callButton": "Call",
-    "messageButton": "Send Message"
+    "callButton": "Позвонить",
+    "messageButton": "Написать"
   }
 }
