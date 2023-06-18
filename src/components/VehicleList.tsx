@@ -7,11 +7,15 @@ import {
   StyleSheet,
   Switch,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList, Vehicle} from '../types';
 import importedVehiclesData from './Vehicles.json';
 import MapView, {Marker} from 'react-native-maps';
+import truckIcon from '../assets/truck.png';
+import passengerIcon from '../assets/passenger.png';
+import specialIcon from '../assets/special.png';
 
 type DetailsScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -35,7 +39,7 @@ const vehiclesData: Vehicle[] = importedVehiclesData;
 const VehicleList: React.FC = () => {
   const navigation = useNavigation<DetailsScreenNavigationProp>();
   const [vehicles, setVehicles] = useState<Vehicle[]>(vehiclesData);
-  const [showMap, setShowMap] = useState(false);
+  const [showMap, setShowMap] = useState(true);
   const [filter, setFilter] = useState('');
 
   const toggleMap = () => {
@@ -46,10 +50,23 @@ const VehicleList: React.FC = () => {
     setFilter(filter => (filter === category ? '' : category));
   };
 
+  const getMarkerIcon = (category: string) => {
+    switch (category) {
+      case 'Грузовой':
+        return truckIcon;
+      case 'Пассажирский':
+        return passengerIcon;
+      case 'Спецтранспорт':
+        return specialIcon;
+      default:
+        return truckIcon;
+    }
+  };
+
   useEffect(() => {
-    const filteredVehicles = !!filter? vehiclesData.filter(
-      vehicle => vehicle.category === filter,
-    ): vehiclesData;
+    const filteredVehicles = !!filter
+      ? vehiclesData.filter(vehicle => vehicle.category === filter)
+      : vehiclesData;
     setVehicles(filteredVehicles);
   }, [filter]);
 
@@ -90,7 +107,24 @@ const VehicleList: React.FC = () => {
       {showMap ? (
         <>
           <Text style={styles.filter}>Карта</Text>
-          <MapView style={styles.map}></MapView>
+          <MapView style={styles.map}>
+            {vehicles.map(vehicle => (
+              <Marker
+                key={vehicle.id}
+                coordinate={{
+                  latitude: vehicle.latitude,
+                  longitude: vehicle.longitude,
+                }}
+                title={vehicle.name}
+                description={vehicle.category}>
+                <Image
+                  style={styles.marker}
+                  resizeMode='contain'
+                  source={getMarkerIcon(vehicle.category)}
+                />
+              </Marker>
+            ))}
+          </MapView>
         </>
       ) : (
         <FlatList
@@ -124,9 +158,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   map: {
-    width: '100%',
+    width: 400,
     height: 300,
     marginBottom: 16,
+  },
+  marker: {
+    width: 20,
+    height: 20,
   },
 });
 

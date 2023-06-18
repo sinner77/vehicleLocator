@@ -1,18 +1,22 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Linking} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Linking, Image} from 'react-native';
 import {Vehicle} from '../types';
 import MapView, {Marker} from 'react-native-maps';
+import truckIcon from '../assets/truck.png';
+import passengerIcon from '../assets/passenger.png';
+import specialIcon from '../assets/special.png';
 
-const driverLocation = {
-  latitude: 37.78825,
-  longitude: -122.4324,
-};
-
-const startingPosition = {
-  latitude: 37.78825,
-  longitude: -122.4324,
-  latitudeDelta: 5.0922,
-  longitudeDelta: 5.0421,
+const getMarkerIcon = (category: string) => {
+  switch (category) {
+    case 'Грузовой':
+      return truckIcon;
+    case 'Пассажирский':
+      return passengerIcon;
+    case 'Спецтранспорт':
+      return specialIcon;
+    default:
+      return truckIcon;
+  }
 };
 
 const VehicleDetails: React.FC<{vehicle: Vehicle}> = ({vehicle}) => {
@@ -45,7 +49,22 @@ const VehicleDetails: React.FC<{vehicle: Vehicle}> = ({vehicle}) => {
         <TouchableOpacity style={styles.button} onPress={handleSendMessage}>
           <Text style={styles.buttonText}>Написать</Text>
         </TouchableOpacity>
-        <MapView style={styles.map}></MapView>
+        <MapView style={styles.map}>
+          <Marker
+            key={vehicle.id}
+            coordinate={{
+              latitude: vehicle.latitude,
+              longitude: vehicle.longitude,
+            }}
+            title={vehicle.name}
+            description={vehicle.category}>
+            <Image
+              style={styles.marker}
+              resizeMode='contain'
+              source={getMarkerIcon(vehicle.category)}
+            />
+          </Marker>
+        </MapView>
       </View>
     </>
   );
@@ -91,6 +110,10 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  marker: {
+    width: 20,
+    height: 20,
   },
 });
 

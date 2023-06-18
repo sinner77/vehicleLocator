@@ -10,6 +10,8 @@ export interface Vehicle {
   driver: string;
   category: string;
   phone: string;
+  latitude: number;
+  longitude: number
 }
 
 enum ELanguageId {
