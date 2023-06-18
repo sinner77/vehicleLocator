@@ -2,7 +2,14 @@
   "greetings": "Привет",
   "title": "Заголовок приложения",
   "homeScreen": {
-    "carList": "Список автомобилей"
+    "carList": "Список автомобилей",
+    "filterByCategory": "Фильтр по категории",
+    "cargo": "Грузовой",
+    "passenger": "Пассажирский",
+    "specialTransport": "Спецтранспорт",
+    "showOnTheMap": "Показать на карте:",
+    "map":"Карта",
+    "settings": "Настройки"
   },
   "settingsScreen": {
     "settings": "Настройки",
@@ -14,5 +21,9 @@
     "driver": "Водитель",
     "callButton": "Позвонить",
     "messageButton": "Написать"
+  },
+  "vehicleDetails": {
+    "callButton": "Call",
+    "messageButton": "Send Message"
   }
 }

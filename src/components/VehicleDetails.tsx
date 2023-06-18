@@ -5,6 +5,7 @@ import MapView, {Marker} from 'react-native-maps';
 import truckIcon from '../assets/truck.png';
 import passengerIcon from '../assets/passenger.png';
 import specialIcon from '../assets/special.png';
+import { t } from 'i18next';
 
 const getMarkerIcon = (category: string) => {
   switch (category) {
@@ -44,10 +45,10 @@ const VehicleDetails: React.FC<{vehicle: Vehicle}> = ({vehicle}) => {
         <Text style={styles.driverName}>{vehicle.driver}</Text>
         <Text style={styles.phone}>{vehicle.phone}</Text>
         <TouchableOpacity style={styles.button} onPress={handleCallDriver}>
-          <Text style={styles.buttonText}>Позвонить</Text>
+          <Text style={styles.buttonText}>{t('vehicleDetails.callButton')}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={handleSendMessage}>
-          <Text style={styles.buttonText}>Написать</Text>
+          <Text style={styles.buttonText}>{t('vehicleDetails.messageButton')}</Text>
         </TouchableOpacity>
         <MapView style={styles.map}>
           <Marker

@@ -8,6 +8,7 @@ import {
   Switch,
   TouchableOpacity,
   Image,
+  Button
 } from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList, Vehicle} from '../types';
@@ -16,6 +17,8 @@ import MapView, {Marker} from 'react-native-maps';
 import truckIcon from '../assets/truck.png';
 import passengerIcon from '../assets/passenger.png';
 import specialIcon from '../assets/special.png';
+import {useTranslation} from 'react-i18next';
+import { t } from 'i18next';
 
 type DetailsScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -72,7 +75,7 @@ const VehicleList: React.FC = () => {
 
   const renderItem = ({item}: {item: Vehicle}) => (
     <TouchableOpacity onPress={() => handleVehiclePress(item)}>
-      <View>
+      <View style={styles.vehicleContainer}>
         <Text>{item.name}</Text>
         <Text>{item.driver}</Text>
         <Text>{item.category}</Text>
@@ -87,26 +90,26 @@ const VehicleList: React.FC = () => {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.filter}>Фильтр по категории:</Text>
+        <Text style={styles.filter}>{t('homeScreen.filterByCategory')}</Text>
         <TouchableOpacity onPress={() => filterVehicles('Грузовой')}>
-          <Text style={styles.filter1}>Грузовой</Text>
+          <Text style={styles.filter1}>{t('homeScreen.cargo')}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => filterVehicles('Пассажирский')}>
-          <Text style={styles.filter1}>Пассажирский</Text>
+          <Text style={styles.filter1}>{t('homeScreen.passenger')}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => filterVehicles('Спецтранспорт')}>
-          <Text style={styles.filter1}>Спецтранспорт</Text>
+          <Text style={styles.filter1}>{t('homeScreen.specialTransport')}</Text>
         </TouchableOpacity>
       </View>
 
       <View>
-        <Text style={styles.filter}>Показать на карте:</Text>
+        <Text style={styles.filter}>{t('homeScreen.showOnTheMap')}</Text>
         <Switch value={showMap} onValueChange={toggleMap} />
       </View>
 
       {showMap ? (
         <>
-          <Text style={styles.filter}>Карта</Text>
+          <Text style={styles.filter}>{t('homeScreen.map')}</Text>
           <MapView style={styles.map}>
             {vehicles.map(vehicle => (
               <Marker
@@ -140,11 +143,20 @@ const VehicleList: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'grey',
+    width: '100%',
     alignItems: 'center',
     fontSize: 100,
     fontWeight: 'bold',
   },
+  vehicleContainer: {
+    flex: 1,
+    backgroundColor: 'pink',
+    alignItems: 'center',
+    fontSize: 100,
+    fontWeight: 'bold',
+    marginBottom: 5
+  },  
   filter: {
     fontSize: 20,
     fontWeight: 'bold',

@@ -2,7 +2,14 @@
   "greetings": "Hello",
   "title": "App Title",
   "homeScreen": {
-    "carList": "Car List"
+    "carList": "Car List",
+    "filterByCategory": "Filter by category",
+    "cargo": "Cargo",
+    "passenger": "Passenger",
+    "specialTransport": "Special Transport",
+    "showOnTheMap": "Show on the map:",
+    "map": "Map",
+    "settings": "Settings"
   },
   "settingsScreen": {
     "settings": "Settings",
@@ -12,6 +19,10 @@
     "detailsScreen": "Details Screen",
     "category": "Category",
     "driver": "Driver",
+    "callButton": "Call",
+    "messageButton": "Send Message"
+  },
+  "vehicleDetails": {
     "callButton": "Call",
     "messageButton": "Send Message"
   }
