@@ -7,8 +7,7 @@ import {
   StyleSheet,
   Switch,
   TouchableOpacity,
-  Image,
-  Button
+  Image
 } from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList, Vehicle} from '../types';
@@ -143,7 +142,7 @@ const VehicleList: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'grey',
+    backgroundColor: 'green',
     width: '100%',
     alignItems: 'center',
     fontSize: 100,
@@ -155,7 +154,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     fontSize: 100,
     fontWeight: 'bold',
-    marginBottom: 5
+    marginBottom: 8
   },  
   filter: {
     fontSize: 20,

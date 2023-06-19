@@ -10,14 +10,10 @@ interface SettingsScreenProps {
 
 const SettingsScreen: React.FC<SettingsScreenProps> = () => {
   const {t, i18n} = useTranslation();
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [selectedLanguage] = useState('en');
 
   const handleLanguageChange = (value: string) => {
     i18n?.changeLanguage(value);
-  };
-
-  const Language = ({item}) => {
-    return <Text>{item.id}</Text>;
   };
 
   return (

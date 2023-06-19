@@ -96,12 +96,12 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   driverName: {
-    fontSize: 16,
+    fontSize: 20,
     marginBottom: 16,
   },
   button: {
     backgroundColor: 'green',
-    paddingVertical: 8,
+    paddingVertical: 10,
     paddingHorizontal: 16,
     alignItems: 'center',
     borderRadius: 4,
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   marker: {
