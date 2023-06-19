@@ -16,7 +16,6 @@ import MapView, {Marker} from 'react-native-maps';
 import truckIcon from '../assets/truck.png';
 import passengerIcon from '../assets/passenger.png';
 import specialIcon from '../assets/special.png';
-import {useTranslation} from 'react-i18next';
 import { t } from 'i18next';
 
 type DetailsScreenNavigationProp = StackNavigationProp<
@@ -24,16 +23,11 @@ type DetailsScreenNavigationProp = StackNavigationProp<
   'Details'
 >;
 
-const driverLocation = {
-  latitude: 37.78825,
-  longitude: -122.4324,
-};
-
 const startingPosition = {
-  latitude: 37.78825,
-  longitude: -122.4324,
-  latitudeDelta: 5.0922,
-  longitudeDelta: 5.0421,
+  latitude: 57.78825,
+  longitude: 122.4324,
+  latitudeDelta: 40.0922,
+  longitudeDelta: 40.0421,
 };
 
 const vehiclesData: Vehicle[] = importedVehiclesData;
@@ -109,7 +103,7 @@ const VehicleList: React.FC = () => {
       {showMap ? (
         <>
           <Text style={styles.filter}>{t('homeScreen.map')}</Text>
-          <MapView style={styles.map}>
+          <MapView style={styles.map} initialRegion={startingPosition}>
             {vehicles.map(vehicle => (
               <Marker
                 key={vehicle.id}

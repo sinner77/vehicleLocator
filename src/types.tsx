@@ -5,7 +5,7 @@ export type RootStackParamList = {
 };
 
 export interface Vehicle {
-  id: number;
+  id: string;
   name: string;
   driver: string;
   category: string;

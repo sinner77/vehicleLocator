@@ -20,6 +20,13 @@ const getMarkerIcon = (category: string) => {
   }
 };
 
+const startingPosition = {
+  latitude: 57.78825,
+  longitude: 122.4324,
+  latitudeDelta: 40.0922,
+  longitudeDelta: 40.0421,
+};
+
 const VehicleDetails: React.FC<{vehicle: Vehicle}> = ({vehicle}) => {
   const handleCallDriver = () => {
     // Открыть приложение для звонка с номером водителя
@@ -50,7 +57,7 @@ const VehicleDetails: React.FC<{vehicle: Vehicle}> = ({vehicle}) => {
         <TouchableOpacity style={styles.button} onPress={handleSendMessage}>
           <Text style={styles.buttonText}>{t('vehicleDetails.messageButton')}</Text>
         </TouchableOpacity>
-        <MapView style={styles.map}>
+        <MapView style={styles.map} initialRegion={startingPosition}>
           <Marker
             key={vehicle.id}
             coordinate={{
